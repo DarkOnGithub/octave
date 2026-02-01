@@ -1,0 +1,23 @@
+# Octave
+octave-workspace
+history
+
+# Data files (often large or generated, uncomment if you want to ignore them)
+# *.mat
+# *.dat
+
+# LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Generated images (uncomment if you want to ignore them)
+# *.png
+# *.jpg
+# *.jpeg
+# *.pdf
+# *.eps
