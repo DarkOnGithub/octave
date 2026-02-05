@@ -11,7 +11,36 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{titling}
 \usepackage{fancyhdr}
+
+% --- NEW PACKAGES FOR READABILITY ---
+\usepackage{setspace}   % Allows changing line spacing
+\usepackage{parskip}    % Adds vertical space between paragraphs instead of indenting
+\usepackage{titlesec}   % Allows customizing section spacing
+
+% --- SPACING CONFIGURATION ---
+
+% 1. Increase general line spacing (1.25 is a good balance for reports)
+
+% 2. Add space around equations
+\setlength{\abovedisplayskip}{15pt}
+\setlength{\belowdisplayskip}{15pt}
+\setlength{\abovedisplayshortskip}{10pt}
+\setlength{\belowdisplayshortskip}{10pt}
+\setlength{\jot}{10pt} % Increases space between lines in 'align' environments
+
+% 3. Add space around figures/floats
+\setlength{\textfloatsep}{25pt plus 1.0pt minus 2.0pt}
+\setlength{\intextsep}{25pt plus 1.0pt minus 2.0pt}
+
+% 4. Customize Section Titles (More space above and below)
+\titlespacing*{\section}
+{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
+% 5. Customize Lists (Itemize) to have breathing room
 \usepackage{enumitem}
+\setlist[itemize]{itemsep=0.5em, topsep=0.5em}
+
+% ------------------------------------
 
 \pagestyle{fancy}
 \fancyhf{} 
@@ -21,10 +50,10 @@
 \fancyfoot[R]{Page \thepage}
 
 \title{
-\vspace{6cm}
-\rule{0.65\linewidth}{3pt}\\[0.7em]
-\textbf{Compte-rendu 1}\\[0.5em]
-\rule{0.65\linewidth}{1pt}
+    \vspace{4cm} % Adjusted slightly for the new spacing
+    \rule{0.65\linewidth}{3pt}\\[0.7em]
+    \textbf{Compte-rendu 1}\\[0.5em]
+    \rule{0.65\linewidth}{1pt}
 }
 
 \author{
@@ -39,25 +68,23 @@
 \maketitle\thispagestyle{empty}
 \newpage
 
-
-
 \section{Exercice 1}
-On étudie les trois formes bilinéaires symétriques sur $E = \mathbb{R}^2$ définies pour tout $(u,v) \in E^2$ par:
+
+On étudie les trois formes bilinéaires symétriques sur $E = \mathbb{R}^2$ définies pour tout 
+$(u,v) \in E^2$ par:
 \begin{align}
-    \varphi_A(u,v) = {}^t X_1 \cdot A \cdot X_2, \quad
-    \varphi_B(u,v) = {}^t X_1 \cdot B \cdot X_2 \quad \text{et} \quad
-    \varphi_C(u,v) = {}^t X_1 \cdot C \cdot X_2
+    \varphi_A(u,v) &= {}^t X_1 \cdot A \cdot X_2, \quad \\
+    \varphi_B(u,v) &= {}^t X_1 \cdot B \cdot X_2 \quad \text{et} \quad \\
+    \varphi_C(u,v) &= {}^t X_1 \cdot C \cdot X_2
 \end{align}
-où $X_1$ et $X_2$ sont les matrices colonnes constituées des coordonnées de $u$ et de $v$ dans la base canonique.
+où $X_1$ et $X_2$ sont les matrices colonnes constituées des coordonnées de $u$ et de $v$ 
+dans la base canonique.
 
-L'objectif est de déterminer si ces formes bilinéaires symétriques sont des produits scalaires, c'est-à-dire si elles sont définies positives. Les matrices extraites du fichier \texttt{Ex1.mat} sont les suivantes :
-\begin{equation*}
-    A = \begin{pmatrix} 1,7500 & 0,4330 \\ 0,4330 & 1,2500 \end{pmatrix}, \quad
-    B = \begin{pmatrix} 0,5000 & 0,8660 \\ 0,8660 & 1,5000 \end{pmatrix}, \quad
-    C = \begin{pmatrix} 0,5000 & 1,5000 \\ 1,5000 & 0,5000 \end{pmatrix}
-\end{equation*}
-
-Pour analyser ces formes, on considère le vecteur $u(t) = (\cos(t), \sin(t))$ pour tout $t \in [0, 2\pi]$. Les figures~\ref{fig:phi_A},~\ref{fig:phi_B} et~\ref{fig:phi_C} présentent respectivement les graphes de ces fonctions pour les matrices $A$, $B$ et $C$.
+L'objectif est de déterminer si ces formes bilinéaires symétriques sont des produits 
+scalaires, c'est-à-dire si elles sont définies positives. 
+Pour analyser ces formes, on considère le vecteur $u(t) = (\cos(t), \sin(t))$ pour tout 
+$t \in [0, 2\pi]$. Les figures~\ref{fig:phi_A},~\ref{fig:phi_B} et~\ref{fig:phi_C} 
+présentent respectivement les graphes de ces fonctions pour les matrices $A$, $B$ et $C$.
 
 \begin{figure}[!ht]
     \centering
@@ -75,6 +102,7 @@ Pour analyser ces formes, on considère le vecteur $u(t) = (\cos(t), \sin(t))$ p
         \label{fig:phi_B}
     \end{subfigure}
 
+    \vspace{1em}
     \begin{subfigure}{0.55\textwidth}
         \centering
         \includegraphics[width=\linewidth]{ex_1_image_3.png}
@@ -85,28 +113,47 @@ Pour analyser ces formes, on considère le vecteur $u(t) = (\cos(t), \sin(t))$ p
     \label{fig:exercice1}
 \end{figure}
 
+Pour la matrice $A$, la fonction $\varphi_A(u(t), u(t))$ reste strictement positive sur 
+tout l'intervalle $[0, 2\pi]$, suggérant que $\varphi_A$ pourrait être un produit scalaire. 
+En revanche, le graphe de la matrice $B$ va jusqu'à zéro tandis que celui de la matrice $C$ 
+descend jusqu'à $-1$, ce qui confirme que ces deux formes ne sont pas définies positives.
 
-Pour la matrice $A$, la fonction $\varphi_A(u(t), u(t))$ reste strictement positive sur tout l'intervalle $[0, 2\pi]$, suggérant que $\varphi_A$ pourrait être un produit scalaire. En revanche, le graphe de la matrice $B$ va jusqu'à zéro tandis que celui de la matrice $C$ descend jusqu'à $-1$, ce qui confirme que ces deux formes ne sont pas définies positives.
+On remarque également que sur chaque graphique, les valeurs propres de la matrice 
+correspondent exactement aux extremums (minimum et maximum) de la fonction. 
+Par exemple, pour la matrice $A$, le maximum est $2$ et le minimum est $1$.
 
-On remarque également que sur chaque graphique, les valeurs propres de la matrice correspondent exactement aux extremums (minimum et maximum) de la fonction. Par exemple, pour la matrice $A$, le maximum est $2$ et le minimum est $1$.
+Pour confirmer cette analyse visuelle, on procède à la diagonalisation des trois matrices. 
+Une forme bilinéaire symétrique est un produit scalaire si et seulement si elle est définie 
+positive, c'est-à-dire si toutes les valeurs propres de la matrice associée sont 
+strictement positives.
 
-Pour confirmer cette analyse visuelle, on procède à la diagonalisation des trois matrices. Une forme bilinéaire symétrique est un produit scalaire si et seulement si elle est définie positive, c'est-à-dire si toutes les valeurs propres de la matrice associée sont strictement positives.
-
-La diagonalisation confirme les observations graphiques. Les valeurs propres obtenues sont les suivantes :
+La diagonalisation confirme les observations graphiques. Les valeurs propres obtenues 
+sont les suivantes :
 \begin{itemize}
-    \item Pour la matrice $A$ : $2$ et $1$. Les deux étant strictement positives, $\varphi_A$ est un produit scalaire.
-    \item Pour la matrice $B$ : $2$ et environ $-5,55 \times 10^{-17}$. La présence d'une valeur propre non strictement positive (nulle / légèrement négative en raison de la précision numérique) montre que $\varphi_B$ n'est pas un produit scalaire.
-    \item Pour la matrice $C$ : $2$ et $-1$. La valeur propre négative confirme que $\varphi_C$ n'est pas un produit scalaire.
+    \item Pour la matrice $A$ : $2$ et $1$. Les deux étant strictement positives, 
+          $\varphi_A$ est un produit scalaire.
+    \item Pour la matrice $B$ : $2$ et environ $-5,55 \times 10^{-17}$. La présence d'une 
+          valeur propre non strictement positive (nulle / légèrement négative en raison 
+          de la précision numérique) montre que $\varphi_B$ n'est pas un produit scalaire.
+    \item Pour la matrice $C$ : $2$ et $-1$. La valeur propre négative confirme que 
+          $\varphi_C$ n'est pas un produit scalaire.
 \end{itemize}
 
-En conclusion, l'étude des valeurs propres permet de caractériser la nature d'une forme bilinéaire symétrique, confirmant que seule la matrice $A$ définit un produit scalaire.
+En conclusion, l'étude des valeurs propres permet de caractériser la nature d'une forme 
+bilinéaire symétrique, confirmant que seule la matrice $A$ définit un produit scalaire.
 
 
-\section{Exercice 2 : Étude des endomorphismes symétriques}
+\section{Exercice 2}
 
-On étudie les endomorphismes $f$, $g$ et $h$ de $E = \mathbb{R}^2$ définis par les matrices $A$, $B$ et $C$ dans la base canonique. L'objectif est d'observer l'image du cercle unité $\mathcal{C}$ par ces transformations.
+On étudie les endomorphismes $f$, $g$ et $h$ de $E = \mathbb{R}^2$ définis par les 
+matrices $A$, $B$ et $C$ dans la base canonique. L'objectif est d'observer l'image 
+du cercle unité $\mathcal{C}$ par ces transformations.
 
-L'image du cercle unité par un endomorphisme symétrique est une ellipse. Les figures~\ref{fig:image_f},~\ref{fig:image_g} et~\ref{fig:image_h} illustrent ces transformations, avec la représentation des vecteurs $\lambda_1 \varepsilon_1$ et $\lambda_2 \varepsilon_2$, où $(\varepsilon_1, \varepsilon_2)$ est la base propre et les $\lambda_i$ les valeurs propres.
+L'image du cercle unité par un endomorphisme symétrique est une ellipse. Les 
+figures~\ref{fig:image_f},~\ref{fig:image_g} et~\ref{fig:image_h} illustrent ces 
+transformations, avec la représentation des vecteurs $\lambda_1 \varepsilon_1$ et 
+$\lambda_2 \varepsilon_2$, où $(\varepsilon_1, \varepsilon_2)$ est la base propre 
+et les $\lambda_i$ les valeurs propres.
 
 \begin{figure}[!ht]
     \centering
@@ -124,6 +171,7 @@ L'image du cercle unité par un endomorphisme symétrique est une ellipse. Les f
         \label{fig:image_g}
     \end{subfigure}
 
+    \vspace{1em}
     \begin{subfigure}{0.55\textwidth}
         \centering
         \includegraphics[width=\linewidth]{ex_2_image_3.png}
@@ -134,49 +182,79 @@ L'image du cercle unité par un endomorphisme symétrique est une ellipse. Les f
     \label{fig:exercice2}
 \end{figure}
 
-La diagonalisation des matrices permet d'obtenir les valeurs propres $\lambda_i$ et les vecteurs propres associés $\varepsilon_i$. On remarque un comportement standard des solveurs numériques: la matrice de passage $P$ retournée est systématiquement normalisée, c'est-à-dire que chaque vecteur propre $\varepsilon_i$ est de norme euclidienne égale à 1. Pour la matrice $A$, le solveur retourne la matrice de passage suivante (arrondie à $10^{-4}$) :
+La diagonalisation des matrices permet d'obtenir les valeurs propres $\lambda_i$ 
+et les vecteurs propres associés $\varepsilon_i$. On remarque un comportement 
+standard des solveurs numériques: la matrice de passage $P$ retournée est 
+systématiquement normalisée, c'est-à-dire que chaque vecteur propre $\varepsilon_i$ 
+est de norme euclidienne égale à 1. Pour la matrice $A$, le solveur retourne la 
+matrice de passage suivante (arrondie à $10^{-4}$) :
 \begin{equation*}
     P_A = \begin{pmatrix} -0,8660 & 0,5000 \\ -0,5000 & -0,8660 \end{pmatrix}
 \end{equation*}
-On vérifie bien que $\|\varepsilon_1\| = \sqrt{(-0,8660)^2 + (-0,5000)^2} = \sqrt{0,749956 + 0,2500} \approx 1$. Cette normalisation est importante car elle permet de s'assurer que les axes de l'ellipse ont des longueurs exactement égales aux valeurs propres $\lambda_i$.
+On vérifie bien que $\|\varepsilon_1\| = \sqrt{(-0,8660)^2 + (-0,5000)^2} \approx 1$. 
+Cette normalisation est importante car elle permet de s'assurer que les axes de 
+l'ellipse ont des longueurs exactement égales aux valeurs propres $\lambda_i$.
 
-De plus, comme les matrices $A, B$ et $C$ sont symétriques, leurs vecteurs propres associés à des valeurs propres distinctes sont théoriquement orthogonaux. Numériquement, on vérifie l'orthonormalité de la base propre en calculant le produit $P^T P$. Pour la matrice $A$, Octave retourne :
+De plus, comme les matrices $A, B$ et $C$ sont symétriques, leurs vecteurs propres 
+associés à des valeurs propres distinctes sont théoriquement orthogonaux. 
+Numériquement, on vérifie l'orthonormalité de la base propre en calculant le 
+produit $P^T P$. Pour la matrice $A$, Octave retourne :
 \begin{equation*}
     P^T P = \begin{pmatrix} 1,0000 & 1,4874 \times 10^{-17} \\ 1,4874 \times 10^{-17} & 1,0000 \end{pmatrix} \approx I
 \end{equation*}
-Pour la matrice $B$, le résultat est même exactement la matrice identité à la précision d'affichage près, tandis que pour $C$, le terme hors-diagonale est de l'ordre de $-1,0147 \times 10^{-17}$. Ces résultats confirment que la base $(\varepsilon_1, \varepsilon_2)$ est orthonormée.
+Pour la matrice $B$, le résultat est même exactement la matrice identité à la 
+précision numérique près, tandis que pour $C$, le terme hors-diagonale est de 
+l'ordre de $-1,0147 \times 10^{-17}$. Ces résultats confirment que la base 
+$(\varepsilon_1, \varepsilon_2)$ est orthonormée.
 
-Les figures~\ref{fig:image_f},~\ref{fig:image_g} et~\ref{fig:image_h} illustrent ces transformations. Sur chaque graphique, sont représentés:
+Les figures~\ref{fig:image_f},~\ref{fig:image_g} et~\ref{fig:image_h} illustrent 
+ces transformations. Sur chaque graphique, sont représentés:
 \begin{itemize}
     \item Le cercle unité $\mathcal{C}$ (en pointillé noir).
     \item L'image du cercle par l'endomorphisme (en bleu).
-    \item Les vecteurs propres pondérés par leurs valeurs propres $\lambda_1 \varepsilon_1$ (rouge) et $\lambda_2 \varepsilon_2$ (vert).
+    \item Les vecteurs propres pondérés par leurs valeurs propres 
+          $\lambda_1 \varepsilon_1$ (rouge) et $\lambda_2 \varepsilon_2$ (vert).
 \end{itemize}
 
-Géométriquement, les axes de chaque ellipse sont dirigés selon les vecteurs propres de la matrice associée, leurs longueurs respectives étant égales aux valeurs propres (en valeur absolue). La nature orthonormée de la base propre garantit ainsi que les axes de l'ellipse soient perpendiculaires.
+Géométriquement, les axes de chaque ellipse sont dirigés selon les vecteurs 
+propres de la matrice associée, leurs longueurs respectives étant égales aux 
+valeurs propres (en valeur absolue). La nature orthonormée de la base propre 
+garantit ainsi que les axes de l'ellipse soient perpendiculaires.
 
 Les résultats observés permettent de tirer plusieurs conclusions :
 \begin{itemize}
-    \item Pour la matrice $A$ (Figure~\ref{fig:image_f}), l'image est une ellipse dont les rayons, valant 2 et 1, sont définis par les valeurs propres.
-    \item Pour la matrice $B$ (Figure~\ref{fig:image_g}), l'ellipse est aplatie au point de ressembler à un segment. C'est la conséquence directe de la valeur propre quasi nulle ($\approx -5,55 \times 10^{-17}$) : le cercle unité est projeté sur la droite dirigée par le vecteur propre $\varepsilon_1$. Géométriquement, l'endomorphisme $g$ agit comme une projection sur un sous-espace vectoriel de dimension 1 (la droite $\text{Vect}(\varepsilon_1)$).
-    \item Pour la matrice $C$ (Figure~\ref{fig:image_h}), la valeur propre négative ($\lambda_2 = -1$) fait un changement de sens dans la transformation.
+    \item Pour la matrice $A$ (Figure~\ref{fig:image_f}), l'image est une ellipse 
+          dont les rayons, valant 2 et 1, sont définis par les valeurs propres.
+    \item Pour la matrice $B$ (Figure~\ref{fig:image_g}), l'ellipse est aplatie au 
+          point de ressembler à un segment. C'est la conséquence directe de la 
+          valeur propre quasi nulle ($\approx -5,55 \times 10^{-17}$) : le cercle 
+          unité est projeté sur la droite dirigée par le vecteur propre $\varepsilon_1$. 
+          Géométriquement, l'endomorphisme $g$ agit comme une projection sur un 
+          sous-espace vectoriel de dimension 1.
+    \item Pour la matrice $C$ (Figure~\ref{fig:image_h}), la valeur propre négative 
+          ($\lambda_2 = -1$) fait un changement de sens dans la transformation.
 \end{itemize}
 
-En conclusion, l'image du cercle unité permet de voir l'action de la matrice : elle étire ou contracte le cercle selon ses valeurs propres, le transformant en une ellipse orientée par ses vecteurs propres.
+En conclusion, l'image du cercle unité permet de voir l'action de la matrice : 
+elle étire ou contracte le cercle selon ses valeurs propres, le transformant en 
+une ellipse orientée par ses vecteurs propres.
 
 
-\section{Exercice 3 : Représentation du cercle unité pour une norme induite}
+\section{Exercice 3}
 
-La forme bilinéaire symétrique $\varphi_A$ associée à $A$ définit un produit scalaire sur $E = \mathbb{R}^2$ :
+La forme bilinéaire symétrique $\varphi_A$ associée à $A$ définit un produit scalaire 
+sur $E = \mathbb{R}^2$ :
 \begin{equation}
     \varphi_A(u,v) = {}^t X_1 \cdot A \cdot X_2
 \end{equation}
-où $X_1$ et $X_2$ sont les coordonnées de $u$ et $v$ dans la base canonique. Ce produit scalaire induit une norme sur $E$, notée $\|\cdot\|_A$ :
+où $X_1$ et $X_2$ sont les coordonnées de $u$ et $v$ dans la base canonique. 
+Ce produit scalaire induit une norme sur $E$, notée $\|\cdot\|_A$ :
 \begin{equation}
     \|u\|_A = \sqrt{\varphi_A(u,u)} = \sqrt{{}^t X \cdot A \cdot X}
 \end{equation}
 
-L'objectif est de représenter le cercle unité vis-à-vis de cette norme, c'est-à-dire l'ensemble $\mathcal{C}_A = \{u \in E, \|u\|_A = 1\}$.
+L'objectif est de représenter le cercle unité vis-à-vis de cette norme, c'est-à-dire 
+l'ensemble $\mathcal{C}_A = \{u \in E, \|u\|_A = 1\}$.
 
 \begin{figure}[H]
     \centering
@@ -185,21 +263,147 @@ L'objectif est de représenter le cercle unité vis-à-vis de cette norme, c'est
     \label{fig:exercice3}
 \end{figure}
 
-Pour ce faire, on travaille dans la base propre $\mathcal{B}' = (\varepsilon_1, \varepsilon_2)$ de $A$. Soit $X' = (x', y')$ les coordonnées d'un vecteur $u$ dans cette base. L'expression de la forme quadratique devient alors:
+Ainsi, on travaille dans la base propre $\mathcal{B}' = (\varepsilon_1, \varepsilon_2)$ 
+de $A$. Soit $X' = (x', y')$ les coordonnées d'un vecteur $u$ dans cette base. 
+L'expression de la forme quadratique devient alors:
 \begin{equation}
     \varphi_A(u,u) = {}^t X' \cdot D \cdot X' = \lambda_1 (x')^2 + \lambda_2 (y')^2
 \end{equation}
-L'équation du cercle unité $\mathcal{C}_A$ dans la base propre est donc $\lambda_1 (x')^2 + \lambda_2 (y')^2 = 1$. On peut alors décrire cet ensemble par :
+L'équation du cercle unité $\mathcal{C}_A$ dans la base propre est donc 
+$\lambda_1 (x')^2 + \lambda_2 (y')^2 = 1$. On peut alors décrire cet ensemble par :
 \begin{equation}
-    x' = \frac{\cos(t)}{\sqrt{\lambda_1}} \quad \text{et} \quad y' = \frac{\sin(t)}{\sqrt{\lambda_2}} \quad \text{pour } t \in [0, 2\pi]
+    x' = \frac{\cos(t)}{\sqrt{\lambda_1}} \quad \text{et} \quad 
+    y' = \frac{\sin(t)}{\sqrt{\lambda_2}} \quad \text{pour } t \in [0, 2\pi]
 \end{equation}
 
-Pour représenter $\mathcal{C}_A$ dans la base canonique, on effectue le changement de base $X = P \cdot X'$, où $P$ est la matrice de passage composée des vecteurs propres.
+Pour représenter $\mathcal{C}_A$ dans la base canonique, on effectue le changement 
+de base $X = P \cdot X'$, où $P$ est la matrice de passage composée des vecteurs propres.
 
-Le graphique de la Figure~\ref{fig:exercice3} montre que le cercle unité pour la norme $\|\cdot\|_A$ est une ellipse dont les axes sont alignés avec les vecteurs propres de $A$. Les demi-longueurs des axes sont inversement proportionnelles aux racines carrées des valeurs propres ($1/\sqrt{\lambda_1} = 1/\sqrt{2} \approx 0,707$ et $1/\sqrt{\lambda_2} = 1/\sqrt{1} = 1$). 
+Le graphique de la Figure~\ref{fig:exercice3} montre que le cercle unité pour la 
+norme $\|\cdot\|_A$ est une ellipse dont les axes sont alignés avec les vecteurs 
+propres de $A$. Les demi-longueurs des axes sont inversement proportionnelles aux 
+racines carrées des valeurs propres ($1/\sqrt{\lambda_1} \approx 0,707$ et 
+$1/\sqrt{\lambda_2} = 1$). 
 
-On observe une différence fondamentale avec l'exercice 2 : alors que l'image du cercle unité par l'endomorphisme $f$ (de matrice $A$) dilatait le cercle selon les valeurs propres, le cercle unité pour la norme $\|\cdot\|_A$ subit une contraction sur les axes associés aux valeurs propres supérieures à 1.
+En comparaison avec l'exercice 2: alors que l'image du 
+cercle unité par l'endomorphisme $f$ dilatait le cercle selon les valeurs propres, 
+le cercle unité pour la norme $\|\cdot\|_A$ subit une contraction sur les axes 
+associés aux valeurs propres supérieures à 1.
 
-En conclusion, la représentation du cercle unité pour une norme induite montre que la géométrie de l'espace est contractée selon les directions du produit scalaire, montrant la relation inverse entre les valeurs propres et les demi-longueurs des axes de l'ellipse.
+En conclusion, la représentation du cercle unité pour une norme donnée montre 
+que la géométrie de l'espace est contractée selon les directions du produit scalaire, 
+soulignant la relation inverse entre les valeurs propres et les demi-longueurs des 
+axes de l'ellipse.
+
+
+\section{Exercice 5}
+
+On a le système linéaire $(S) : AX = U$ suivant :
+\begin{equation}
+    \begin{pmatrix} 1 & -1 \\ 2 & 1 \\ 1 & 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3 \\ 2 \\ -1 \end{pmatrix}
+\end{equation}
+Ce système est surdéterminé (3 équations pour 2 inconnues) et n'admet pas de 
+solution exacte. On cherche donc la solution $X$ qui minimise l'erreur quadratique 
+$\|AX - U\|^2$.
+
+L'ensemble des vecteurs de la forme $AX$ constitue le plan $F = \text{Vect}(\varepsilon_1, \varepsilon_2)$ 
+où $\varepsilon_1 = (1, 2, 1)^T$ et $\varepsilon_2 = (-1, 1, 1)^T$. Minimiser $\|AX - U\|$ 
+revient à chercher le vecteur $v \in F$ le plus proche de $U$. On sait que pour 
+tout vecteur $v$ du plan $F$, on a :
+\begin{equation*}
+    \|U - v\|^2 = \|U - p_F(u)\|^2 + \|p_F(u) - v\|^2
+\end{equation*}
+Cette expression est minimale si et seulement si $\|p_F(u) - v\|^2 = 0$, soit 
+$v = p_F(u)$. C'est donc bien le projeté orthogonal de $U$ sur $F$ qui conduit 
+au couple $(x,y)$ optimal. 
+
+En utilisant \texttt{X = A \textbackslash U} dans Octave, on obtient :
+\begin{equation*}
+    x \approx 1,5714, \quad y \approx -1,7143
+\end{equation*}
+Le projeté orthogonal est alors $p_F(u) = AX \approx (3,2857, 1,4286, -0,1429)^T$.
+
+On peut visualiser cette situation en dimension 3 (Figure~\ref{fig:exercice5}) :
+\begin{itemize}
+    \item Le vecteur $u$ est représenté par un point rouge.
+    \item Le plan $F$ est dessiné à l'aide de la fonction \texttt{mesh}, montrant 
+          l'espace de toutes les solutions possibles $AX$.
+    \item Le point $p_F(u)$ est marqué en noir sur ce plan.
+    \item Un segment en pointillés relie $u$ à $p_F(u)$, représentant le vecteur 
+          erreur $e = U - p_F(u) \approx (-0,2857, 0,5714, -0,8571)^T$.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{ex_5_image_1.png}
+    \caption{Visualisation du système: projection de $u$ sur le plan $F$.}
+    \label{fig:exercice5}
+\end{figure}
+
+L'orthogonalité est vérifiée numériquement par le calcul des produits scalaires 
+entre l'erreur $e$ et les vecteurs de base du plan :
+\begin{equation*}
+    e \cdot \varepsilon_1 \approx 4,44 \times 10^{-16} \quad \text{et} \quad 
+    e \cdot \varepsilon_2 \approx -2,22 \times 10^{-16}
+\end{equation*}
+
+Visuellement, on observe que le segment pointillé est perpendiculaire au plan $F$. 
+Cela confirme que $p_F(u)$ est le point du plan le plus proche de $u$.
+
+En conclusion, la résolution du système au sens des moindres carrés s'interprète 
+géométriquement comme une projection orthogonale sur l'espace colonne de la matrice, 
+garantissant ainsi de trouver le vecteur le plus proche de la cible $U$ dans 
+l'espace des solutions possibles.
+
+
+\section{Exercice 6}
+
+Un marin cherche à déterminer sa position $X = (x, y)^T$ à partir de l'azimut relevé 
+vers trois phares dont les positions sont connues :
+\begin{itemize}
+    \item Phare 1 : $P_1(2, 4)$, azimut $\theta_1 = 145^\circ$
+    \item Phare 2 : $P_2(4, 3)$, azimut $\theta_2 = 0^\circ$
+    \item Phare 3 : $P_3(2.5, 2)$, azimut $\theta_3 = -95^\circ$
+\end{itemize}
+
+Chaque relevé définit une droite de visée passant par le phare $P_i$ avec un 
+angle $\theta_i$. L'équation cartésienne de la droite $D_i$ est :
+\begin{equation}
+    -\sin(\theta_i)x + \cos(\theta_i)y = -\sin(\theta_i)x_{P_i} + \cos(\theta_i)y_{P_i}
+\end{equation}
+
+On obtient un système de trois équations à deux inconnues de la forme $MX = C$ :
+\begin{equation}
+    \begin{pmatrix} -0,5736 & -0,8192 \\ 0 & 1,0000 \\ 0,9962 & -0,0872 \end{pmatrix} 
+    \begin{pmatrix} x \\ y \end{pmatrix} = 
+    \begin{pmatrix} -4,4238 \\ 3,0000 \\ 2,3162 \end{pmatrix}
+\end{equation}
+Comme les mesures ne sont pas parfaites, les trois droites ne convergent pas 
+exactement en un point.
+
+La meilleure estimation de la position du navire est obtenue en résolvant le 
+système au sens des moindres carrés, ce qui minimise la somme des carrés des 
+distances du navire aux trois droites de visée.
+
+En utilisant \texttt{X = M \textbackslash C} dans Octave, on obtient :
+\begin{equation*}
+    x \approx 2,7386, \quad y \approx 3,2008
+\end{equation*}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{ex_6_image_1.png}
+    \caption{Position des phares, lignes de visée et estimation de la position du navire.}
+    \label{fig:exercice6}
+\end{figure}
+
+L'analyse de la Figure~\ref{fig:exercice6} montre que la position estimée se 
+situe au centre de la zone d'incertitude. La méthode des moindres carrés 
+permet d'extraire la position la plus probable malgré les erreurs de mesure.
+
+En conclusion, l'application des moindres carrés au problème de navigation montre 
+l'efficacité de cette méthode pour traiter des données expérimentales imparfaites, 
+en identifiant le point qui minimise globalement l'écart quadratique aux 
+différentes droites de visée.
 
 \end{document}
