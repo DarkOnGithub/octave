@@ -183,9 +183,8 @@ et les $\lambda_i$ les valeurs propres.
 \end{figure}
 
 La diagonalisation des matrices permet d'obtenir les valeurs propres $\lambda_i$ 
-et les vecteurs propres associés $\varepsilon_i$. On remarque un comportement 
-standard des solveurs numériques: la matrice de passage $P$ retournée est 
-systématiquement normalisée, c'est-à-dire que chaque vecteur propre $\varepsilon_i$ 
+et les vecteurs propres associés $\varepsilon_i$. On remarque que la matrice de passage $P$ retournée est 
+normalisée, c'est-à-dire que chaque vecteur propre $\varepsilon_i$ 
 est de norme euclidienne égale à 1. Pour la matrice $A$, le solveur retourne la 
 matrice de passage suivante (arrondie à $10^{-4}$) :
 \begin{equation*}
@@ -203,7 +202,7 @@ produit $P^T P$. Pour la matrice $A$, Octave retourne :
     P^T P = \begin{pmatrix} 1,0000 & 1,4874 \times 10^{-17} \\ 1,4874 \times 10^{-17} & 1,0000 \end{pmatrix} \approx I
 \end{equation*}
 Pour la matrice $B$, le résultat est même exactement la matrice identité à la 
-précision numérique près, tandis que pour $C$, le terme hors-diagonale est de 
+précision numérique près, tandis que pour $C$, le terme hors de la diagonale principale est de 
 l'ordre de $-1,0147 \times 10^{-17}$. Ces résultats confirment que la base 
 $(\varepsilon_1, \varepsilon_2)$ est orthonormée.
 
@@ -358,7 +357,7 @@ l'espace des solutions possibles.
 
 \section{Exercice 6}
 
-Un marin cherche à déterminer sa position $X = (x, y)^T$ à partir de l'azimut relevé 
+On cherche à déterminer la position $X = (x, y)^T$ à partir de l'azimut relevé 
 vers trois phares dont les positions sont connues :
 \begin{itemize}
     \item Phare 1 : $P_1(2, 4)$, azimut $\theta_1 = 145^\circ$
